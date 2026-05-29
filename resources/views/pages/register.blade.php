@@ -57,7 +57,7 @@
         <p class="text-gray-500 text-sm mt-6 p-4 bg-yellow-50 rounded-xl border border-yellow-200">This registration form helps us understand your situation and recommend the best support program for you. All information provided will remain <strong>confidential</strong>.</p>
       </div>
       <div class="reveal reveal-right stagger-2">
-        <video class="w-full rounded-3xl shadow-xl object-cover aspect-[4/3]" muted loop autoplay playsinline preload="metadata">
+        <video class="w-full rounded-3xl shadow-xl object-cover aspect-[3/4]" muted loop autoplay playsinline preload="metadata">
           <source src="{{ asset('videos/VID-20260528-WA0020.mp4') }}" type="video/mp4">
         </video>
       </div>
@@ -376,7 +376,7 @@
           </div>
         </div>
         <div class="reveal reveal-right stagger-3">
-          <video class="w-full rounded-2xl shadow-lg object-cover aspect-video" muted loop autoplay playsinline preload="metadata">
+          <video class="w-full rounded-2xl shadow-lg object-cover aspect-[1/1]" muted loop autoplay playsinline preload="metadata">
             <source src="{{ asset('videos/VID-20260528-WA0023.mp4') }}" type="video/mp4">
           </video>
         </div>

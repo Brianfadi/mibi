@@ -20,7 +20,14 @@ class BlogController extends Controller
         $popularPosts = $this->blogService->getPopularPosts();
         $featuredPost = BlogPost::published()->featured()->recent()->first();
 
-        return view('blog.index', compact('posts', 'categories', 'popularPosts', 'featuredPost'));
+        $totalPosts = BlogPost::published()->count();
+        $totalCategories = $categories->count();
+        $totalReadingTime = BlogPost::published()->get()->sum(fn ($p) => $p->reading_time);
+
+        return view('blog.index', compact(
+            'posts', 'categories', 'popularPosts', 'featuredPost',
+            'totalPosts', 'totalCategories', 'totalReadingTime'
+        ));
     }
 
     public function show(string $slug)

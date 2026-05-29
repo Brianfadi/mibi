@@ -21,8 +21,12 @@ class TestimonialController extends Controller
             ->distinct('service_type')
             ->pluck('service_type');
 
+        $totalTestimonials = Testimonial::published()->count();
+        $avgRating = Testimonial::published()->whereNotNull('rating')->average('rating');
+
         return view('testimonials.index', compact(
-            'featuredTestimonials', 'testimonials', 'serviceTypes'
+            'featuredTestimonials', 'testimonials', 'serviceTypes',
+            'totalTestimonials', 'avgRating'
         ));
     }
 }
