@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\LiveSessionController;
 use App\Http\Controllers\Web\ProgramController;
+use App\Http\Controllers\Web\RegistrationController as WebRegistrationController;
 use App\Http\Controllers\Web\ServiceController;
 use App\Http\Controllers\Web\TestimonialController;
 use App\Http\Controllers\Admin\AnalyticsController;
@@ -38,6 +39,7 @@ Route::view('/coming-soon', 'pages.coming-soon')->name('coming-soon');
 
 // About & Legal Pages
 Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/booking', [HomeController::class, 'bookingInfo'])->name('booking.info');
 Route::get('/coaching', [HomeController::class, 'coaching'])->name('coaching');
 Route::get('/privacy-policy', [HomeController::class, 'privacy'])->name('privacy');
 Route::get('/terms-of-service', [HomeController::class, 'terms'])->name('terms');
@@ -73,9 +75,12 @@ Route::get('/unsubscribe/{email}', [ContactController::class, 'unsubscribe'])->n
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-    Route::post('/register', [AuthController::class, 'register']);
 });
+
+// Public Registration (Application Form)
+Route::get('/register', [WebRegistrationController::class, 'showForm'])->name('register');
+Route::post('/register', [WebRegistrationController::class, 'submit'])->name('register.submit');
+Route::get('/register/thanks', [WebRegistrationController::class, 'thanks'])->name('register.thanks');
 
 // Authenticated Routes
 Route::middleware('auth')->group(function () {
@@ -217,6 +222,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     // Security
     Route::get('/security', [SecurityController::class, 'index'])->name('security.index');
     Route::post('/security/roles', [SecurityController::class, 'createRole'])->name('security.create-role');
+    Route::get('/security/roles/{role}/edit', [SecurityController::class, 'editRole'])->name('security.edit-role');
     Route::put('/security/roles/{role}', [SecurityController::class, 'updateRole'])->name('security.update-role');
     Route::get('/security/logs', [SecurityController::class, 'logs'])->name('security.logs');
 

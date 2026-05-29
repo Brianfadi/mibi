@@ -16,6 +16,7 @@ class SettingsSeeder extends Seeder
             ['key' => 'contact_email', 'value' => 'hello@mibi.africa', 'group' => 'general', 'type' => 'text'],
             ['key' => 'contact_phone', 'value' => '+254 700 000 000', 'group' => 'general', 'type' => 'text'],
             ['key' => 'whatsapp_number', 'value' => '254700000000', 'group' => 'general', 'type' => 'text'],
+            ['key' => 'intro_video_url', 'value' => 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'group' => 'general', 'type' => 'text'],
 
             // Social Media
             ['key' => 'social_tiktok', 'value' => 'https://tiktok.com/@mibi', 'group' => 'social', 'type' => 'text'],

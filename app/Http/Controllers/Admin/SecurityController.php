@@ -19,6 +19,16 @@ class SecurityController extends Controller
         return view('admin.security.index', compact('roles', 'permissions', 'admins'));
     }
 
+    public function editRole(Role $role)
+    {
+        $permissions = Permission::all()->groupBy(function ($perm) {
+            return explode('.', $perm->name)[0] ?? 'general';
+        });
+        $role->load('permissions');
+
+        return view('admin.security.edit-role', compact('role', 'permissions'));
+    }
+
     public function updateRole(Request $request, Role $role)
     {
         $role->syncPermissions($request->permissions ?? []);

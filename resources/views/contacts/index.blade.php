@@ -73,7 +73,7 @@
                         </div>
                         <div class="ml-4">
                             <h3 class="font-semibold">WhatsApp</h3>
-                            <a href="https://wa.me/{{ config('services.whatsapp.number') }}" class="text-red-600 hover:text-red-700">Chat with us now</a>
+                            <a href="https://wa.me/{{ preg_replace('/\D/', '', config('services.whatsapp.number') ?? '254700000000') }}" class="text-red-600 hover:text-red-700">Chat with us now</a>
                         </div>
                     </div>
 

@@ -19,33 +19,44 @@
     </head>
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
-                        >
-                            Log in
-                        </a>
-
-                        @if (Route::has('register'))
+            <nav class="flex items-center justify-between gap-4 px-4 py-2 bg-gradient-to-r from-red-100 via-pink-100 to-yellow-100 dark:from-[#2d0a0a] dark:via-[#1a0a1a] dark:to-[#1a1a0a] rounded-2xl shadow-lg border border-[#f3e8e8] dark:border-[#3E3E3A]">
+                <div class="flex items-center gap-2 select-none">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-red-500 via-pink-400 to-yellow-400 shadow-md mr-2">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="14" cy="14" r="14" fill="#fff" fill-opacity="0.7"/>
+                            <text x="50%" y="55%" text-anchor="middle" fill="#f53003" font-size="16" font-family="Arial, sans-serif" dy=".3em">M</text>
+                        </svg>
+                    </span>
+                    <span class="font-bold text-lg tracking-wide text-[#f53003] dark:text-[#FF4433]">MIBI</span>
+                </div>
+                @if (Route::has('login'))
+                    <div class="flex items-center gap-2">
+                        @auth
                             <a
-                                href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                                Register
+                                href="{{ url('/dashboard') }}"
+                                class="inline-block px-5 py-2 font-semibold text-[#fff] bg-gradient-to-r from-red-500 via-pink-500 to-yellow-400 rounded-lg shadow hover:scale-105 transition-transform duration-200 border-0 focus:outline-none focus:ring-2 focus:ring-red-300"
+                            >
+                                Dashboard
                             </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
+                        @else
+                            <a
+                                href="{{ route('login') }}"
+                                class="inline-block px-5 py-2 font-semibold text-[#f53003] bg-white border border-[#f53003] rounded-lg hover:bg-[#f53003] hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-300"
+                            >
+                                Log in
+                            </a>
+                            @if (Route::has('register'))
+                                <a
+                                    href="{{ route('register') }}"
+                                    class="inline-block px-5 py-2 font-semibold text-[#fff] bg-gradient-to-r from-yellow-400 via-pink-400 to-red-500 rounded-lg shadow hover:scale-105 transition-transform duration-200 border-0 ml-2 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+                                >
+                                    Register
+                                </a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+            </nav>
         </header>
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
