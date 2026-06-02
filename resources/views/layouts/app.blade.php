@@ -23,80 +23,116 @@
     </a>
 
     <!-- Navigation -->
-    <nav class="bg-[#111111] sticky top-0 z-40 w-full border-b border-red-800/50 shadow-[0_0_30px_-5px_rgba(220,38,38,0.25)]">
-        <div class="absolute inset-0 bg-gradient-to-b from-red-700/15 via-red-900/5 to-transparent pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-500/60 to-transparent pointer-events-none"></div>
-        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 md:h-20 items-center max-w-7xl mx-auto">
-                <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                    <img src="{{ asset('images/logo.png') }}" alt="MIBI Logo" class="h-10 w-auto">
+    <nav class="bg-[#111111] sticky top-0 z-40 w-full border-b border-red-800/40 shadow-[0_0_30px_-5px_rgba(220,38,38,0.2)]">
+        <div class="absolute inset-0 bg-gradient-to-b from-red-700/10 via-red-900/5 to-transparent pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-500/50 to-transparent pointer-events-none"></div>
+        <div class="w-full mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-14 md:h-20 items-center max-w-7xl mx-auto">
+                <a href="{{ route('home') }}" class="flex items-center space-x-2 md:space-x-3">
+                    <img src="{{ asset('images/logo.png') }}" alt="MIBI Logo" class="h-8 md:h-10 w-auto">
                     <div>
-                        <span class="text-2xl font-extrabold text-white tracking-tight">MIBI</span>
-                        <p class="text-[9px] text-gray-400 uppercase tracking-[0.15em] leading-none">Make It or Break It</p>
-                        <p class="text-[8px] text-red-500 uppercase tracking-[0.12em] leading-none mt-0.5">Where Love Faces Reality</p>
+                        <span class="text-lg md:text-2xl font-extrabold text-white tracking-tight">MIBI</span>
+                        <p class="hidden sm:block text-[8px] md:text-[9px] text-gray-400 uppercase tracking-[0.15em] leading-none">Make It or Break It</p>
+                        <p class="hidden sm:block text-[7px] md:text-[8px] text-red-500 uppercase tracking-[0.12em] leading-none mt-0.5">Where Love Faces Reality</p>
                     </div>
                 </a>
 
-                <div class="hidden lg:flex lg:items-center lg:space-x-7">
-                    <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'text-red-500 font-semibold border-b-2 border-red-500' : 'text-gray-300 hover:text-red-400' }} text-sm uppercase tracking-wide pb-1 transition">Home</a>
-                    <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'text-red-500 font-semibold border-b-2 border-red-500' : 'text-gray-300 hover:text-red-400' }} text-sm uppercase tracking-wide pb-1 transition">About</a>
-                    <a href="{{ route('services.index') }}" class="{{ request()->routeIs('services.*') ? 'text-red-500 font-semibold border-b-2 border-red-500' : 'text-gray-300 hover:text-red-400' }} text-sm uppercase tracking-wide pb-1 transition">Services</a>
-                    <a href="{{ route('coaching') }}" class="{{ request()->routeIs('coaching') ? 'text-red-500 font-semibold border-b-2 border-red-500' : 'text-gray-300 hover:text-red-400' }} text-sm uppercase tracking-wide pb-1 transition">Coaching</a>
-                    <a href="{{ route('bookings.create') }}" class="{{ request()->routeIs('bookings.*') ? 'text-red-500 font-semibold border-b-2 border-red-500' : 'text-gray-300 hover:text-red-400' }} text-sm uppercase tracking-wide pb-1 transition">Book Session</a>
-                    <a href="{{ route('blog.index') }}" class="{{ request()->routeIs('blog.*') ? 'text-red-500 font-semibold border-b-2 border-red-500' : 'text-gray-300 hover:text-red-400' }} text-sm uppercase tracking-wide pb-1 transition">Blog</a>
-                    <a href="{{ route('testimonials.index') }}" class="{{ request()->routeIs('testimonials.*') ? 'text-red-500 font-semibold border-b-2 border-red-500' : 'text-gray-300 hover:text-red-400' }} text-sm uppercase tracking-wide pb-1 transition">Testimonials</a>
-                    <a href="{{ route('contact.index') }}" class="{{ request()->routeIs('contact.*') ? 'text-red-500 font-semibold border-b-2 border-red-500' : 'text-gray-300 hover:text-red-400' }} text-sm uppercase tracking-wide pb-1 transition">Contact</a>
+                <div class="hidden lg:flex lg:items-center lg:space-x-1">
+                    @php $navLinks = [
+                        ['route' => 'home', 'name' => 'Home', 'pattern' => 'home'],
+                        ['route' => 'about', 'name' => 'About', 'pattern' => 'about'],
+                        ['route' => 'services.index', 'name' => 'Services', 'pattern' => 'services.*'],
+                        ['route' => 'coaching', 'name' => 'Coaching', 'pattern' => 'coaching'],
+                        ['route' => 'bookings.create', 'name' => 'Book Session', 'pattern' => 'bookings.*'],
+                        ['route' => 'blog.index', 'name' => 'Blog', 'pattern' => 'blog.*'],
+                        ['route' => 'testimonials.index', 'name' => 'Testimonials', 'pattern' => 'testimonials.*'],
+                        ['route' => 'contact.index', 'name' => 'Contact', 'pattern' => 'contact.*'],
+                    ]; @endphp
+                    @foreach($navLinks as $link)
+                    <a href="{{ route($link['route']) }}" class="relative px-3 py-2 text-sm font-medium uppercase tracking-wide transition-colors duration-200 {{ request()->routeIs($link['pattern']) ? 'text-red-500' : 'text-gray-300 hover:text-red-400' }} group">
+                        {{ $link['name'] }}
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-500 transition-all duration-300 {{ request()->routeIs($link['pattern']) ? 'w-4/5' : 'group-hover:w-4/5' }}"></span>
+                    </a>
+                    @endforeach
                     @auth
                         @can('admin')
-                            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.*') ? 'text-red-500 font-semibold border-b-2 border-red-500' : 'text-gray-300 hover:text-red-400' }} text-sm uppercase tracking-wide pb-1 transition">Admin</a>
+                        <a href="{{ route('admin.dashboard') }}" class="relative px-3 py-2 text-sm font-medium uppercase tracking-wide transition-colors duration-200 {{ request()->routeIs('admin.*') ? 'text-red-500' : 'text-gray-300 hover:text-red-400' }} group">
+                            Admin
+                            <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-500 transition-all duration-300 {{ request()->routeIs('admin.*') ? 'w-4/5' : 'group-hover:w-4/5' }}"></span>
+                        </a>
                         @endcan
                     @endauth
                 </div>
-                <div class="hidden lg:flex lg:items-center lg:space-x-4">
+
+                <div class="hidden lg:flex lg:items-center lg:space-x-3">
                     @auth
-                        <a href="{{ route('profile') }}" class="text-gray-300 hover:text-red-400 text-sm transition">{{ auth()->user()->name }}</a>
+                        <a href="{{ route('profile') }}" class="text-gray-300 hover:text-red-400 text-sm font-medium transition">{{ auth()->user()->name }}</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-gray-300 hover:text-white text-sm font-medium transition">Login</a>
+                        <a href="{{ route('login') }}" class="text-gray-300 hover:text-white text-sm font-medium transition px-3 py-2">Login</a>
                     @endauth
-                    <a href="{{ route('register') }}" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold uppercase tracking-wide transition flex items-center space-x-2">
+                    <a href="{{ route('register') }}" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold uppercase tracking-wide transition-all duration-300 shadow-lg shadow-red-600/25 hover:shadow-red-600/40 flex items-center space-x-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-                        <span>Register Now</span>
+                        <span>Register</span>
                     </a>
                 </div>
 
-                <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-300 hover:text-red-400 p-2">
-                        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                <div class="lg:hidden flex items-center space-x-2">
+                    @auth
+                    @else
+                    <a href="{{ route('register') }}" class="bg-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase">Join</a>
+                    @endauth
+                    <button id="mobile-menu-button" class="relative w-10 h-10 flex items-center justify-center text-gray-300 hover:text-red-400 transition-colors rounded-xl hover:bg-white/5">
+                        <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+                        <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden lg:hidden bg-[#1a1a1a] border-t border-white/5">
-            <div class="px-4 py-4 space-y-1">
-                <a href="{{ route('home') }}" class="block py-2.5 text-sm uppercase {{ request()->routeIs('home') ? 'text-red-500 font-semibold' : 'text-gray-300 hover:text-red-400' }}">Home</a>
-                <a href="{{ route('about') }}" class="block py-2.5 text-sm uppercase {{ request()->routeIs('about') ? 'text-red-500 font-semibold' : 'text-gray-300 hover:text-red-400' }}">About</a>
-                <a href="{{ route('services.index') }}" class="block py-2.5 text-sm uppercase {{ request()->routeIs('services.*') ? 'text-red-500 font-semibold' : 'text-gray-300 hover:text-red-400' }}">Services</a>
-                <a href="{{ route('coaching') }}" class="block py-2.5 text-sm uppercase {{ request()->routeIs('coaching') ? 'text-red-500 font-semibold' : 'text-gray-300 hover:text-red-400' }}">Coaching</a>
-                <a href="{{ route('bookings.create') }}" class="block py-2.5 text-sm uppercase {{ request()->routeIs('bookings.*') ? 'text-red-500 font-semibold' : 'text-gray-300 hover:text-red-400' }}">Book Session</a>
-                <a href="{{ route('blog.index') }}" class="block py-2.5 text-sm uppercase {{ request()->routeIs('blog.*') ? 'text-red-500 font-semibold' : 'text-gray-300 hover:text-red-400' }}">Blog</a>
-                <a href="{{ route('testimonials.index') }}" class="block py-2.5 text-sm uppercase {{ request()->routeIs('testimonials.*') ? 'text-red-500 font-semibold' : 'text-gray-300 hover:text-red-400' }}">Testimonials</a>
-                <a href="{{ route('contact.index') }}" class="block py-2.5 text-sm uppercase {{ request()->routeIs('contact.*') ? 'text-red-500 font-semibold' : 'text-gray-300 hover:text-red-400' }}">Contact</a>
-                <div class="pt-3 border-t border-white/10">
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="fixed inset-0 z-50 hidden lg:hidden">
+            <div id="mobile-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+            <div class="absolute top-0 right-0 w-[280px] max-w-[85vw] h-full bg-[#0f0f0f] border-l border-white/10 shadow-2xl overflow-y-auto">
+                <div class="flex items-center justify-between px-5 py-4 border-b border-white/10">
+                    <div class="flex items-center space-x-2">
+                        <img src="{{ asset('images/logo.png') }}" alt="MIBI" class="h-7 w-auto">
+                        <span class="text-white font-extrabold text-lg">MIBI</span>
+                    </div>
+                    <button id="mobile-menu-close" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+                <div class="px-4 py-4 space-y-1">
+                    @foreach($navLinks as $link)
+                    <a href="{{ route($link['route']) }}" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 {{ request()->routeIs($link['pattern']) ? 'bg-red-600/10 text-red-400 border border-red-600/20' : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent' }}">
+                        <span class="w-1.5 h-1.5 rounded-full {{ request()->routeIs($link['pattern']) ? 'bg-red-500' : 'bg-gray-600' }}"></span>
+                        {{ $link['name'] }}
+                    </a>
+                    @endforeach
+                </div>
+                <div class="px-4 py-3 border-t border-white/10">
                     @auth
-                        <a href="{{ route('profile') }}" class="block py-2.5 text-gray-300 hover:text-red-400 text-sm uppercase">{{ auth()->user()->name }}</a>
+                        <a href="{{ route('profile') }}" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm text-gray-300 hover:bg-white/5 transition">{{ auth()->user()->name }}</a>
                         @can('admin')
-                            <a href="{{ route('admin.dashboard') }}" class="block py-2.5 text-gray-300 hover:text-red-400 text-sm uppercase">Admin</a>
+                        <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm text-gray-300 hover:bg-white/5 transition">Admin</a>
                         @endcan
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="block w-full text-left py-2.5 text-gray-300 hover:text-red-400 text-sm uppercase">Logout</button>
+                            <button type="submit" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm text-gray-300 hover:bg-white/5 transition">Logout</button>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="block py-2.5 text-gray-300 hover:text-red-400 text-sm uppercase">Login</a>
-                        <a href="{{ route('register') }}" class="block mt-2 bg-red-600 text-white text-center py-3 rounded-lg text-sm font-semibold uppercase">Register Now</a>
+                        <a href="{{ route('login') }}" class="flex items-center justify-center space-x-2 px-4 py-3 rounded-xl text-sm text-gray-300 hover:bg-white/5 transition border border-white/10 mb-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+                            <span>Login</span>
+                        </a>
+                        <a href="{{ route('register') }}" class="flex items-center justify-center space-x-2 w-full bg-gradient-to-r from-red-600 to-red-700 text-white px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-wide">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+                            <span>Register Now</span>
+                        </a>
                     @endauth
+                </div>
+                <div class="px-4 py-4 border-t border-white/5">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-widest text-center">Where Love Faces Reality ❤️</p>
                 </div>
             </div>
         </div>
@@ -201,11 +237,19 @@
 
     @vite(['resources/js/app.js'])
     <script>
-        document.getElementById('mobile-menu-button')?.addEventListener('click', function() {
-            document.getElementById('mobile-menu')?.classList.toggle('hidden');
-            document.getElementById('menu-icon-open')?.classList.toggle('hidden');
-            document.getElementById('menu-icon-close')?.classList.toggle('hidden');
-        });
+        (function() {
+            var menu = document.getElementById('mobile-menu');
+            var btn = document.getElementById('mobile-menu-button');
+            var closeBtn = document.getElementById('mobile-menu-close');
+            var overlay = document.getElementById('mobile-overlay');
+            var iconOpen = document.getElementById('menu-icon-open');
+            var iconClose = document.getElementById('menu-icon-close');
+            function openMenu() { menu.classList.remove('hidden'); document.body.style.overflow = 'hidden'; iconOpen?.classList.add('hidden'); iconClose?.classList.remove('hidden'); }
+            function closeMenu() { menu.classList.add('hidden'); document.body.style.overflow = ''; iconOpen?.classList.remove('hidden'); iconClose?.classList.add('hidden'); }
+            btn?.addEventListener('click', openMenu);
+            closeBtn?.addEventListener('click', closeMenu);
+            overlay?.addEventListener('click', closeMenu);
+        })();
     </script>
     @stack('scripts')
 </body>
