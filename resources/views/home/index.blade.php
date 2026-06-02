@@ -190,7 +190,7 @@
             <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 mt-3">Your Journey to Healing</h2>
             <div class="glow-line mt-4"></div>
         </div>
-        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8">
             <div class="reveal reveal-up text-center group">
                 <div class="relative w-20 h-20 lg:w-24 lg:h-24 mx-auto mb-5">
                     <div class="w-20 h-20 lg:w-24 lg:h-24 bg-red-100 rounded-full flex items-center justify-center group-hover:bg-red-600 transition-all duration-500">
