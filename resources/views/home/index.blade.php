@@ -410,7 +410,7 @@
         </div>
         <div class="grid lg:grid-cols-4 gap-6">
             <div class="lg:col-span-3">
-                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
                     <div class="reveal reveal-up bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm text-center hover:shadow-md transition-all duration-300">
                         <div class="flex justify-center mb-4">
                             <div class="w-14 h-14 lg:w-16 lg:h-16 bg-red-100 rounded-full flex items-center justify-center">
@@ -433,7 +433,7 @@
                         <p class="font-bold text-gray-900">Brian</p>
                         <p class="text-gray-500 text-xs">USA</p>
                     </div>
-                    <div class="reveal reveal-up bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm text-center hover:shadow-md transition-all duration-300 sm:col-span-2 md:col-span-1" style="transition-delay:0.2s">
+                    <div class="reveal reveal-up bg-white rounded-2xl p-6 lg:p-8 border border-gray-100 shadow-sm text-center hover:shadow-md transition-all duration-300 col-span-2 md:col-span-1" style="transition-delay:0.2s">
                         <div class="flex justify-center mb-4">
                             <div class="w-14 h-14 lg:w-16 lg:h-16 bg-red-100 rounded-full flex items-center justify-center">
                                 <span class="text-red-600 font-bold text-lg lg:text-xl">A</span>
