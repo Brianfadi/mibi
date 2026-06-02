@@ -482,7 +482,7 @@
             <span class="text-red-400 font-bold text-sm uppercase tracking-widest">It's Time For Change</span>
             <h2 class="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white mt-4 mb-4 lg:mb-6 leading-tight">You Deserve Love, Peace,<br>And Emotional Freedom</h2>
             <p class="text-gray-300 text-base lg:text-lg mb-6 lg:mb-8 max-w-2xl mx-auto">Every journey begins with one brave step. Reach out today and let's walk this path together toward healing and transformation.</p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div class="flex flex-row items-center justify-center gap-3 lg:gap-4">
                 <a href="{{ route('register') }}" class="bg-red-600 hover:bg-red-700 text-white px-8 lg:px-10 py-3 lg:py-4 rounded-lg font-bold text-base lg:text-lg transition-all duration-300 shadow-xl shadow-red-600/30 pulse-ring">
                     Start Your Journey
                 </a>
