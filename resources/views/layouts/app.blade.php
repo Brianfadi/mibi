@@ -164,7 +164,7 @@
         <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-500/60 to-transparent pointer-events-none"></div>
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mb-12">
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <img src="{{ asset('images/logo.png') }}" alt="MIBI Logo" class="h-12 w-auto">
