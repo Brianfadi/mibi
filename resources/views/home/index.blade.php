@@ -49,7 +49,7 @@
                 <p class="text-gray-300 text-base lg:text-lg mb-6 lg:mb-8 max-w-lg leading-relaxed">
                     We help individuals understand relationships, heal emotionally, make wise decisions and build healthier connections.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 mb-8 lg:mb-10">
+                <div class="flex flex-row flex-wrap gap-2 lg:gap-4 mb-8 lg:mb-10">
                     <a href="{{ route('bookings.create') }}" class="bg-red-600 hover:bg-red-700 text-white px-6 lg:px-8 py-3 lg:py-3.5 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-red-600/30 pulse-ring text-sm lg:text-base">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                         <span>Book a Session</span>
