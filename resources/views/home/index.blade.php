@@ -210,9 +210,45 @@
                     <svg class="w-4 h-4 text-white/10 ml-auto group-hover:text-red-500/40 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </div>
 
+                {{-- Image story cards --}}
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="relative h-28 lg:h-32 rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] shadow-xl group">
+                        <img src="{{ asset('images/IMG-20260528-WA0011.jpg') }}" alt="MIBI relationship clarity session" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute left-3 right-3 bottom-3">
+                            <p class="text-white text-xs lg:text-sm font-bold leading-tight">Relationship Clarity</p>
+                            <p class="text-white/50 text-[10px] mt-0.5">Know what comes next</p>
+                        </div>
+                    </div>
+                    <div class="relative h-28 lg:h-32 rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] shadow-xl group">
+                        <img src="{{ asset('images/IMG-20260528-WA0012.jpg') }}" alt="MIBI healing journey" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute left-3 right-3 bottom-3">
+                            <p class="text-white text-xs lg:text-sm font-bold leading-tight">Healing Journey</p>
+                            <p class="text-white/50 text-[10px] mt-0.5">Process, release, rebuild</p>
+                        </div>
+                    </div>
+                    <div class="relative h-28 lg:h-32 rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] shadow-xl group">
+                        <img src="{{ asset('images/IMG-20260528-WA0017.jpg') }}" alt="MIBI private coaching support" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute left-3 right-3 bottom-3">
+                            <p class="text-white text-xs lg:text-sm font-bold leading-tight">Private Coaching</p>
+                            <p class="text-white/50 text-[10px] mt-0.5">Guidance that feels personal</p>
+                        </div>
+                    </div>
+                    <div class="relative h-28 lg:h-32 rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] shadow-xl group">
+                        <img src="{{ asset('images/IMG-20260528-WA0018.jpg') }}" alt="MIBI growth and transformation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute left-3 right-3 bottom-3">
+                            <p class="text-white text-xs lg:text-sm font-bold leading-tight">Growth Support</p>
+                            <p class="text-white/50 text-[10px] mt-0.5">Build healthier patterns</p>
+                        </div>
+                    </div>
+                </div>
+
                 {{-- Video --}}
                 <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-2xl ring-1 ring-white/10" onclick="this.querySelector('video')?.play()">
-                    <video muted loop playsinline poster="{{ asset('images/IMG-20260528-WA0016.jpg') }}" class="w-full h-64 md:h-[28rem] lg:h-[36rem] object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105">
+                    <video muted loop playsinline poster="{{ asset('images/IMG-20260528-WA0016.jpg') }}" class="w-full h-56 md:h-72 lg:h-80 object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105">
                         <source src="{{ asset('videos/VID-20260528-WA0023.mp4') }}" type="video/mp4">
                     </video>
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
