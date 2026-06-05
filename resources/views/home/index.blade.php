@@ -2,6 +2,7 @@
 
 @section('title', 'MIBI — Where Love Faces Reality')
 
+
 @push('styles')
 <style>
     .reveal { opacity: 0; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -11,8 +12,6 @@
     .reveal-scale { transform: scale(0.9); }
     .reveal.revealed { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
     .counter-value { font-variant-numeric: tabular-nums; }
-    .pulse-ring { animation: pulseRing 2s ease-out infinite; }
-    @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(220,38,38,0.5); } 100% { box-shadow: 0 0 0 20px rgba(220,38,38,0); } }
     .glow-line { height: 3px; background: linear-gradient(90deg, transparent, #dc2626, transparent); width: 80px; margin: 0 auto; }
     .service-card { background-size: cover; background-position: center; position: relative; }
     .service-card::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.92); border-radius: inherit; transition: 0.4s; }
@@ -21,6 +20,68 @@
     .step-number { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: 800; font-size: 1.125rem; }
     .vid-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; }
     @media (max-width: 768px) { .parallax-bg { background-attachment: scroll; } }
+
+    /* Hero-specific enhancements */
+    @keyframes floatOrb {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(30px, -20px) scale(1.05); }
+        66% { transform: translate(-20px, 15px) scale(0.95); }
+    }
+    @keyframes shimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+    }
+    @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 0 20px rgba(220,38,38,0.3), 0 0 60px rgba(220,38,38,0.1); }
+        50% { box-shadow: 0 0 30px rgba(220,38,38,0.5), 0 0 80px rgba(220,38,38,0.2); }
+    }
+    @keyframes scrollBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(8px); }
+    }
+    @keyframes fadeSlideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes borderGlow {
+        0%, 100% { border-color: rgba(220,38,38,0.2); }
+        50% { border-color: rgba(220,38,38,0.5); }
+    }
+    .hero-orb { animation: floatOrb 8s ease-in-out infinite; pointer-events: none; }
+    .hero-orb-2 { animation: floatOrb 12s ease-in-out infinite reverse; pointer-events: none; }
+    .hero-orb-3 { animation: floatOrb 10s ease-in-out 2s infinite; pointer-events: none; }
+    .hero-gradient-text {
+        background: linear-gradient(135deg, #dc2626 0%, #f87171 40%, #fbbf24 70%, #dc2626 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 4s linear infinite;
+    }
+    .hero-btn-shine {
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-btn-shine::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(60deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+        animation: shimmer 3s ease-in-out infinite;
+    }
+    .hero-card-glow:hover {
+        box-shadow: 0 0 25px rgba(220,38,38,0.15), inset 0 0 25px rgba(220,38,38,0.05);
+    }
+    .hero-scroll-indicator { animation: scrollBounce 2s ease-in-out infinite; }
+    .hero-stagger-1 { animation: fadeSlideUp 0.6s 0.1s both; }
+    .hero-stagger-2 { animation: fadeSlideUp 0.6s 0.25s both; }
+    .hero-stagger-3 { animation: fadeSlideUp 0.6s 0.4s both; }
+    .hero-stat-card { animation: borderGlow 3s ease-in-out infinite; }
+    .hero-stat-card:nth-child(2) { animation-delay: 1s; }
+    .hero-stat-card:nth-child(3) { animation-delay: 2s; }
 </style>
 @endpush
 
@@ -29,91 +90,191 @@
 <!-- ======================== -->
 <!-- 1. HERO SECTION -->
 <!-- ======================== -->
-<section class="relative bg-[#111] overflow-hidden min-h-[70vh] lg:min-h-[85vh] flex items-center">
+<section class="relative bg-[#0a0a0a] overflow-hidden min-h-[80vh] lg:min-h-screen flex items-center">
+    {{-- Layered background --}}
     <div class="absolute inset-0">
-        <img src="{{ asset('images/IMG-20260528-WA0015.jpg') }}" alt="" class="w-full h-full object-cover opacity-50">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/80 to-[#111]/60"></div>
-        <div class="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-red-600/10 to-transparent"></div>
+        <img src="{{ asset('images/IMG-20260528-WA0015.jpg') }}" alt="" class="w-full h-full object-cover opacity-40 scale-105" style="filter: saturate(0.8);">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0a0a0a]/70 to-[#0a0a0a]/90"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-transparent to-[#0a0a0a]/60"></div>
     </div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 w-full z-10">
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+    {{-- Floating gradient orbs --}}
+    <div class="hero-orb absolute top-20 left-[10%] w-72 h-72 bg-red-600/20 rounded-full blur-[100px]"></div>
+    <div class="hero-orb-2 absolute bottom-20 right-[15%] w-96 h-96 bg-red-900/15 rounded-full blur-[120px]"></div>
+    <div class="hero-orb-3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[150px]"></div>
+
+    {{-- Subtle grid overlay --}}
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    {{-- Main content --}}
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full z-10">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+            {{-- Left column: Text & CTAs --}}
             <div class="reveal reveal-left">
-                <div class="inline-flex items-center space-x-2 bg-red-600/20 border border-red-600/30 rounded-full px-3 py-1 lg:px-4 lg:py-1.5 text-red-400 text-xs font-semibold mb-4 lg:mb-6 uppercase tracking-wider">
-                    <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                {{-- Badge --}}
+                <div class="inline-flex items-center space-x-2 bg-red-600/10 border border-red-500/20 rounded-full px-4 py-1.5 lg:px-5 lg:py-2 text-red-400 text-xs font-semibold mb-6 lg:mb-8 uppercase tracking-widest backdrop-blur-sm">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+                    </span>
                     <span>Where Love Faces Reality</span>
                 </div>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4 lg:mb-6">
-                    <span class="text-white">Your Healing</span><br>
-                    <span class="text-red-600">Starts Today</span>
+
+                {{-- Headline --}}
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.05] mb-5 lg:mb-7 tracking-tight">
+                    <span class="text-white block">Your Healing</span>
+                    <span class="hero-gradient-text block">Starts Today</span>
                 </h1>
-                <p class="text-gray-300 text-base lg:text-lg mb-6 lg:mb-8 max-w-lg leading-relaxed">
+
+                {{-- Decorative line --}}
+                <div class="flex items-center gap-3 mb-5 lg:mb-7">
+                    <div class="h-[2px] w-12 bg-gradient-to-r from-red-600 to-transparent"></div>
+                    <span class="text-red-400/60 text-xs uppercase tracking-[0.2em] font-medium">Make It or Break It</span>
+                </div>
+
+                {{-- Description --}}
+                <p class="text-gray-400 text-base lg:text-lg mb-8 lg:mb-10 max-w-xl leading-relaxed">
                     We help individuals understand relationships, heal emotionally, make wise decisions and build healthier connections.
                 </p>
-                <div class="flex flex-row flex-wrap gap-2 lg:gap-4 mb-8 lg:mb-10">
-                    <a href="{{ route('bookings.create') }}" class="bg-red-600 hover:bg-red-700 text-white px-6 lg:px-8 py-3 lg:py-3.5 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-red-600/30 pulse-ring text-sm lg:text-base">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+
+                {{-- CTAs --}}
+                <div class="flex flex-row flex-wrap gap-3 lg:gap-4 mb-10 lg:mb-12">
+                    <a href="{{ route('bookings.create') }}" class="hero-btn-shine bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-7 lg:px-9 py-3.5 lg:py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2.5 shadow-lg shadow-red-600/25 text-sm lg:text-base group" style="animation: pulseGlow 3s ease-in-out infinite;">
+                        <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                         <span>Book a Session</span>
                     </a>
-                    <a href="{{ route('services.index') }}" class="border-2 border-white text-white hover:bg-white hover:text-[#111] px-6 lg:px-8 py-3 lg:py-3.5 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 text-sm lg:text-base">
+                    <a href="{{ route('services.index') }}" class="border border-white/20 bg-white/5 backdrop-blur-sm text-white hover:bg-white hover:text-[#0a0a0a] px-7 lg:px-9 py-3.5 lg:py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-2 text-sm lg:text-base group">
                         <span>Our Services</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>
-                    <a href="{{ route('coaching') }}" class="text-white/70 hover:text-white px-4 py-3 lg:py-3.5 font-semibold transition flex items-center justify-center space-x-1 text-sm lg:text-base">
+                    <a href="{{ route('coaching') }}" class="text-white/50 hover:text-white px-4 py-3.5 lg:py-4 font-semibold transition-all duration-300 flex items-center justify-center space-x-1.5 text-sm lg:text-base group">
                         <span>Programs</span>
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        <svg class="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </a>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="flex -space-x-2">
-                        <div class="w-9 h-9 rounded-full bg-red-500 border-2 border-[#111] flex items-center justify-center text-white text-xs font-bold">C</div>
-                        <div class="w-9 h-9 rounded-full bg-purple-500 border-2 border-[#111] flex items-center justify-center text-white text-xs font-bold">B</div>
-                        <div class="w-9 h-9 rounded-full bg-blue-500 border-2 border-[#111] flex items-center justify-center text-white text-xs font-bold">A</div>
-                        <div class="w-9 h-9 rounded-full bg-white/20 border-2 border-[#111] flex items-center justify-center text-white text-xs font-bold">+</div>
+
+                {{-- Social proof --}}
+                <div class="flex items-center space-x-5">
+                    <div class="flex -space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-400 to-red-600 border-2 border-[#0a0a0a] flex items-center justify-center text-white text-xs font-bold shadow-lg">C</div>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 border-2 border-[#0a0a0a] flex items-center justify-center text-white text-xs font-bold shadow-lg">B</div>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-[#0a0a0a] flex items-center justify-center text-white text-xs font-bold shadow-lg">A</div>
+                        <div class="w-10 h-10 rounded-full bg-white/10 border-2 border-[#0a0a0a] backdrop-blur-sm flex items-center justify-center text-white text-xs font-bold">+</div>
                     </div>
-                    <span class="text-gray-400 text-sm"><span class="text-white font-bold">500+</span> people healed</span>
+                    <div class="flex flex-col">
+                        <span class="text-white font-bold text-lg leading-tight">500+</span>
+                        <span class="text-gray-500 text-xs">people healed & growing</span>
+                    </div>
+                    <div class="hidden sm:block h-8 w-px bg-white/10"></div>
+                    <div class="hidden sm:flex items-center space-x-1">
+                        @for($i = 0; $i < 5; $i++)
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        @endfor
+                        <span class="text-gray-400 text-xs ml-1">5.0</span>
+                    </div>
                 </div>
             </div>
-            <div class="reveal reveal-right space-y-4">
-                <div class="bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-5 flex items-center space-x-4 hover:border-red-500/40 transition-all duration-300">
-                    <div class="w-10 h-10 lg:w-12 lg:h-12 bg-red-600/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg class="w-5 h-5 lg:w-6 lg:h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+
+            {{-- Right column: Feature cards & video --}}
+            <div class="reveal reveal-right space-y-3 lg:space-y-4">
+                {{-- Feature cards --}}
+                <div class="hero-card-glow hero-stagger-1 bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-2xl p-4 lg:p-5 flex items-center space-x-4 hover:border-red-500/30 transition-all duration-500 group">
+                    <div class="w-11 h-11 lg:w-13 lg:h-13 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-red-500/30 group-hover:to-red-700/30 transition-all duration-500">
+                        <svg class="w-5 h-5 lg:w-6 lg:h-6 text-red-400 group-hover:text-red-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                     </div>
                     <div>
                         <h3 class="text-white font-bold text-xs lg:text-sm uppercase tracking-wide">Private & Confidential</h3>
-                        <p class="text-gray-400 text-xs">Your story is safe with us</p>
+                        <p class="text-gray-500 text-xs mt-0.5">Your story is safe with us</p>
                     </div>
+                    <svg class="w-4 h-4 text-white/10 ml-auto group-hover:text-red-500/40 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </div>
-                <div class="bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-5 flex items-center space-x-4 hover:border-red-500/40 transition-all duration-300">
-                    <div class="w-10 h-10 lg:w-12 lg:h-12 bg-red-600/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg class="w-5 h-5 lg:w-6 lg:h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                <div class="hero-card-glow hero-stagger-2 bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-2xl p-4 lg:p-5 flex items-center space-x-4 hover:border-red-500/30 transition-all duration-500 group">
+                    <div class="w-11 h-11 lg:w-13 lg:h-13 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-red-500/30 group-hover:to-red-700/30 transition-all duration-500">
+                        <svg class="w-5 h-5 lg:w-6 lg:h-6 text-red-400 group-hover:text-red-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                     </div>
                     <div>
                         <h3 class="text-white font-bold text-xs lg:text-sm uppercase tracking-wide">Expert Coaching</h3>
-                        <p class="text-gray-400 text-xs">Professional guidance you can trust</p>
+                        <p class="text-gray-500 text-xs mt-0.5">Professional guidance you can trust</p>
                     </div>
+                    <svg class="w-4 h-4 text-white/10 ml-auto group-hover:text-red-500/40 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </div>
-                <div class="bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 rounded-xl p-4 lg:p-5 flex items-center space-x-4 hover:border-red-500/40 transition-all duration-300">
-                    <div class="w-10 h-10 lg:w-12 lg:h-12 bg-red-600/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg class="w-5 h-5 lg:w-6 lg:h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                <div class="hero-card-glow hero-stagger-3 bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-2xl p-4 lg:p-5 flex items-center space-x-4 hover:border-red-500/30 transition-all duration-500 group">
+                    <div class="w-11 h-11 lg:w-13 lg:h-13 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:from-red-500/30 group-hover:to-red-700/30 transition-all duration-500">
+                        <svg class="w-5 h-5 lg:w-6 lg:h-6 text-red-400 group-hover:text-red-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                     </div>
                     <div>
                         <h3 class="text-white font-bold text-xs lg:text-sm uppercase tracking-wide">Heal, Grow, Transform</h3>
-                        <p class="text-gray-400 text-xs">Better you, better relationships</p>
+                        <p class="text-gray-500 text-xs mt-0.5">Better you, better relationships</p>
+                    </div>
+                    <svg class="w-4 h-4 text-white/10 ml-auto group-hover:text-red-500/40 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </div>
+
+                {{-- Image story cards --}}
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="relative h-28 lg:h-32 rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] shadow-xl group">
+                        <img src="{{ asset('images/IMG-20260528-WA0011.jpg') }}" alt="MIBI relationship clarity session" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute left-3 right-3 bottom-3">
+                            <p class="text-white text-xs lg:text-sm font-bold leading-tight">Relationship Clarity</p>
+                            <p class="text-white/50 text-[10px] mt-0.5">Know what comes next</p>
+                        </div>
+                    </div>
+                    <div class="relative h-28 lg:h-32 rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] shadow-xl group">
+                        <img src="{{ asset('images/IMG-20260528-WA0012.jpg') }}" alt="MIBI healing journey" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute left-3 right-3 bottom-3">
+                            <p class="text-white text-xs lg:text-sm font-bold leading-tight">Healing Journey</p>
+                            <p class="text-white/50 text-[10px] mt-0.5">Process, release, rebuild</p>
+                        </div>
+                    </div>
+                    <div class="relative h-28 lg:h-32 rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] shadow-xl group">
+                        <img src="{{ asset('images/IMG-20260528-WA0017.jpg') }}" alt="MIBI private coaching support" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute left-3 right-3 bottom-3">
+                            <p class="text-white text-xs lg:text-sm font-bold leading-tight">Private Coaching</p>
+                            <p class="text-white/50 text-[10px] mt-0.5">Guidance that feels personal</p>
+                        </div>
+                    </div>
+                    <div class="relative h-28 lg:h-32 rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] shadow-xl group">
+                        <img src="{{ asset('images/IMG-20260528-WA0018.jpg') }}" alt="MIBI growth and transformation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute left-3 right-3 bottom-3">
+                            <p class="text-white text-xs lg:text-sm font-bold leading-tight">Growth Support</p>
+                            <p class="text-white/50 text-[10px] mt-0.5">Build healthier patterns</p>
+                        </div>
                     </div>
                 </div>
-                <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-xl" onclick="this.querySelector('video')?.play()">
-                    <video muted loop playsinline poster="{{ asset('images/IMG-20260528-WA0016.jpg') }}" class="w-full h-64 md:h-[28rem] lg:h-[36rem] object-cover rounded-2xl">
+
+                {{-- Video --}}
+                <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-2xl ring-1 ring-white/10" onclick="this.querySelector('video')?.play()">
+                    <video muted loop playsinline poster="{{ asset('images/IMG-20260528-WA0016.jpg') }}" class="w-full h-56 md:h-72 lg:h-80 object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105">
                         <source src="{{ asset('videos/VID-20260528-WA0023.mp4') }}" type="video/mp4">
                     </video>
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                        <div class="w-14 h-14 lg:w-16 lg:h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6 lg:w-7 lg:h-7 text-white ml-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-16 h-16 lg:w-20 lg:h-20 bg-red-600/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl shadow-red-600/30 group-hover:scale-110 group-hover:bg-red-600 transition-all duration-500" style="animation: pulseGlow 2.5s ease-in-out infinite;">
+                            <svg class="w-7 h-7 lg:w-8 lg:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
                         </div>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <p class="text-white/80 text-xs font-medium">▶ Watch our story</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    {{-- Scroll indicator --}}
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center space-y-2 hero-scroll-indicator">
+        <span class="text-white/30 text-[10px] uppercase tracking-[0.2em]">Scroll</span>
+        <div class="w-5 h-8 border border-white/20 rounded-full flex justify-center pt-1.5">
+            <div class="w-1 h-2 bg-red-500 rounded-full animate-bounce"></div>
+        </div>
+    </div>
+
+    {{-- Bottom gradient fade --}}
+    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent z-[5]"></div>
 </section>
 
 <!-- ======================== -->
